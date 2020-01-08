@@ -1,0 +1,67 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projet_WPF"
+             xmlns:chart="http://schemas.syncfusion.com/wpf"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" x:Class="Projet_WPF.UserControlStatistique"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <local:OperationStatistique/>
+    </UserControl.DataContext>
+    <Grid>
+
+        <Grid Background="Transparent" Margin="10,16,11,14" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5">
+
+            <Grid.Resources>
+
+                <DataTemplate x:Key="labelTemplate">
+                    <TextBlock Text="{Binding LabelContent}" Foreground="Black"  FontSize="16"/>
+                </DataTemplate>
+
+                <Style TargetType="Line" x:Key="AxisStyle">
+                    <Setter Property="Stroke" Value="Transparent"  />
+                </Style>
+
+                <Style TargetType="Line" x:Key="AxisStyle1">
+                    <Setter Property="Stroke" Value="Transparent"  />
+                </Style>
+
+            </Grid.Resources>
+            <Button x:Name="ButtonClose" Click="ButtonClose_Click" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Margin="862,-26,129,545">
+                <materialDesign:PackIcon Kind="Power" RenderTransformOrigin="2.875,0.188" Foreground="#FF37414A" Height="24" Width="37"/>
+            </Button>
+            <chart:SfChart3D x:Name="radChart" Rotation="20"  BackWallBrush="#FAFAF2" Depth="150" EnableRotation="True" Background="Transparent" Margin="19,19,44,23.6">
+
+                <chart:SfChart3D.Header>
+                    <TextBlock FontSize="22"   Foreground="Black" FontFamily="Segoe UI" 
+                           Margin="0,-2,0,5">Le Nombre d'étudiant par filiere</TextBlock>
+                </chart:SfChart3D.Header>
+
+                <chart:SfChart3D.PrimaryAxis >
+                    <chart:CategoryAxis3D LabelsIntersectAction="Auto" Foreground="Black"  Header="Filieres"  FontSize="20" 
+                                     LabelTemplate="{StaticResource labelTemplate}"
+                                     AxisLineStyle="{StaticResource AxisStyle1}" 
+                                     MajorTickLineStyle="{StaticResource AxisStyle}"/>
+
+
+
+                </chart:SfChart3D.PrimaryAxis>
+                <chart:SfChart3D.SecondaryAxis>
+                    <chart:NumericalAxis3D Minimum="0" Header="Nombre des étudiants" LabelsIntersectAction="Auto" Foreground="Black"  FontSize="20" 
+                                     LabelTemplate="{StaticResource labelTemplate}"
+                                     AxisLineStyle="{StaticResource AxisStyle1}" 
+                                     MajorTickLineStyle="{StaticResource AxisStyle}"/>
+
+                </chart:SfChart3D.SecondaryAxis >
+                <chart:ColumnSeries3D Palette="BlueChrome" ShowTooltip="True" EnableAnimation="True" AnimationDuration="00:00:05"  IsSortData="True" SortBy="Y" SortDirection="Descending"  ItemsSource="{Binding UsersList}" XBindingPath="NomFiliere" YBindingPath="NombreEtudiant" Margin="29,5,-8,6.6"/>
+            </chart:SfChart3D>
+
+        </Grid>
+        <Button Content="Exporter vers pdf" HorizontalAlignment="Left" Height="42" Margin="29,30,0,0" VerticalAlignment="Top" Width="156" Background="#FFEEF3FC" BorderBrush="#FF6F7D83" Foreground="#FF37414A" Click="Button_Click"/>
+    </Grid>
+</UserControl>
+

@@ -1,0 +1,193 @@
+﻿<UserControl x:Class="Projet_WPF.UserControlEtudiant"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Projet_WPF"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation"
+             mc:Ignorable="d" 
+              xmlns:Controls="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.GridView"
+             d:DesignWidth="829"  d:DesignHeight="408">
+    <Grid Background="Transparent" Margin="10,16,10.8,109" Grid.Column="0" Grid.ColumnSpan="3" Grid.RowSpan="5">
+
+ <Button Content="Exporter vers Excel" Background="#FFEEF3FC" BorderBrush="#FF6F7D83" Foreground="#FF37414A" HorizontalAlignment="Left" Height="42" Margin="308,452,0,-211" VerticalAlignment="Top" Width="170" Click="Button_Click"/>
+
+        <telerik:RadGridView x:Name="RadGridView1" GroupRenderMode="Flat"
+			RowIndicatorVisibility="Collapsed"
+			IsReadOnly="True"
+			MinColumnWidth="20" MaxColumnWidth="130" ColumnWidth="130"
+			RowDetailsVisibilityMode="VisibleWhenSelected"
+			ShowColumnSortIndexes="True"
+			ColumnBackground="Transparent"
+			AutoGenerateColumns="False"
+			CanUserFreezeColumns="False"
+			CanUserResizeColumns="False" SearchPanelForeground="#FFC5D4DE" BorderBrush="#FFD4D4D4" HorizontalGridLinesBrush="#FFE8D4D4" VerticalGridLinesBrush="#FFC19090" Foreground="#FF595151" Margin="3,93,6,9" ShowGroupPanel="False" Background="Transparent">
+            <telerik:RadGridView.GroupPanelForeground>
+                <SolidColorBrush Color="#FFE2E9EC" Opacity="0.5"/>
+            </telerik:RadGridView.GroupPanelForeground>
+            <telerik:StyleManager.Theme>
+                <telerik:Windows7Theme/>
+            </telerik:StyleManager.Theme>
+
+            <telerik:RadGridView.Columns>
+                <telerik:GridViewToggleRowDetailsColumn  Width="5"  />
+                <telerik:GridViewImageColumn Header="image"
+					DataMemberBinding="{Binding image}"
+					ImageHeight="30"
+					ImageWidth="60"
+					Width="60" />
+                <telerik:GridViewDataColumn Header="CNE"
+					DataMemberBinding="{Binding cne}" Width="90"/>
+                <telerik:GridViewDataColumn Header="Nom"
+					DataMemberBinding="{Binding nom}" Width="100" />
+                <telerik:GridViewDataColumn Header="Prenom"
+					DataMemberBinding="{Binding prenom}" Width="100"/>
+                <telerik:GridViewDataColumn Header="Sexe"
+					DataMemberBinding="{Binding sexe}" Width="50" />
+                <telerik:GridViewDataColumn Header="Date de naissance"
+					DataMemberBinding="{Binding date_naiss}" Width="130" />
+                <telerik:GridViewDataColumn Header="Adresse"
+					DataMemberBinding="{Binding adresse}" Width="130" />
+                <telerik:GridViewDataColumn Header="Télephone"
+					DataMemberBinding="{Binding telephone}" Width="100" />
+            </telerik:RadGridView.Columns>
+            <telerik:RadGridView.RowDetailsTemplate>
+                <DataTemplate>
+                    <telerik:RadTabControl x:Name="RadTabControl1"
+						Width="702"
+						HorizontalAlignment="Center"
+						Margin="8"
+						VerticalAlignment="Center"  telerik:StyleManager.Theme="Windows7"  >
+
+                        <telerik:RadTabItem x:Name="radtable" Header="Visualiser" telerik:StyleManager.Theme="Windows7"   >
+
+                            <Grid Width="Auto" telerik:StyleManager.Theme="Windows7" 
+								HorizontalAlignment="Stretch">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition />
+                                    <RowDefinition Height="15" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+
+                                <Border Grid.Column="0"
+									Grid.RowSpan="6"
+									Grid.Row="0"
+									VerticalAlignment="Top"
+									HorizontalAlignment="Stretch"
+									Height="115"
+									Width="115"
+									Margin="15"
+									BorderThickness="1"
+									BorderBrush="#FFD6D4D4">
+                                    <Ellipse Height="96"
+										Width="96">
+                                        <Ellipse.Fill>
+
+                                            <ImageBrush ImageSource="{Binding image}" />
+
+                                        </Ellipse.Fill>
+                                    </Ellipse>
+                                </Border>
+
+                                <TextBlock Text="Nom: "
+									Margin="5,10,0,0"
+									Foreground="Black"
+									FontWeight="Bold"
+									Grid.Row="0"
+									Grid.Column="1" />
+                                <TextBlock Text="{Binding nom}"
+									Margin="5,10,0,0"
+									Foreground="Black"
+									Grid.Row="0"
+									Grid.Column="2" />
+                                <Button x:Name="pen" Grid.Row="0" Margin="380,0,0,0" Click="pen_Click"
+									Grid.Column="10" HorizontalAlignment="Left" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}">
+                                    <materialDesign:PackIcon Kind="Pencil" RenderTransformOrigin="2.875,0.188" Foreground="#FF37414A"/>
+                                </Button>
+                                <TextBlock Text="Prenom: "
+									Margin="5,0,0,0"
+									Foreground="Black"
+									FontWeight="Bold"
+									Grid.Row="1"
+									Grid.Column="1" />
+                                <TextBlock Text="{Binding prenom}"
+									Foreground="Black"
+									Margin="5,0,0,0"
+									Grid.Row="1"
+									Grid.Column="2" />
+                                <TextBlock Text="Sexe: "
+									Margin="5,0,0,0"
+									Foreground="Black"
+									FontWeight="Bold"
+									Grid.Row="2"
+									Grid.Column="1" />
+                                <TextBlock Text="{Binding sexe}"
+									Foreground="Black"
+									Margin="5,0,0,0"
+									Grid.Row="2"
+									Grid.Column="2" />
+                                <TextBlock Text="Date de naissance : "
+									Foreground="Black"
+									Margin="5,0,0,0"
+									FontWeight="Bold"
+									Grid.Row="3"
+									Grid.Column="1" />
+
+                                <TextBlock Text="{Binding date_naiss}"
+										Foreground="Black"
+										Margin="5,0,0,0" Grid.Row="3"
+									Grid.Column="2" />
+                                <TextBlock Text="adresse"
+									Foreground="Black"
+									Margin="5,0,0,0"
+									FontWeight="Bold"
+									Grid.Row="4"
+									Grid.Column="1" />
+
+                                <TextBlock Text="{Binding adresse}"
+										Foreground="Black"
+										Margin="5,0,0,0" Grid.Row="4"
+									Grid.Column="2" />
+                                <TextBlock Text="Telephone:"
+									Foreground="Black"
+									Margin="5,0,0,0"
+									FontWeight="Bold"
+									Grid.Row="5"
+									Grid.Column="1" />
+
+                                <TextBlock Text="{Binding telephone}"
+										Foreground="Black"
+										Margin="5,0,0,0" Grid.Row="5"
+									Grid.Column="2" />
+
+                            </Grid>
+                        </telerik:RadTabItem>
+
+                    </telerik:RadTabControl>
+                </DataTemplate>
+            </telerik:RadGridView.RowDetailsTemplate>
+        </telerik:RadGridView>
+        <ComboBox x:Name="listBoxFilliere" Background="White" HorizontalAlignment="Left" Margin="17,40,0,0" VerticalAlignment="Top" Width="189" SelectionChanged="listBoxFilliere_SelectionChanged" SelectedIndex="0" Height="33"/>
+        <telerik:Label x:Name="titre" Foreground="#185EA4" FontSize="22"  Content="{Binding ElementName=listBoxFilliere, Path=Text , Mode=OneWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Margin="242,39,0,0" VerticalAlignment="Top" Height="36" Width="272" FontWeight="Bold">
+
+        </telerik:Label>
+       
+        <Grid  Name="frame2" Height="470" Margin="0,15"  VerticalAlignment="Top" Background="#FFF7F2F2" Visibility="Hidden" />
+        <Button x:Name="ButtonClose" Click="ButtonClose_Click" Width="50" Height="50" Padding="0" Background="{x:Null}" BorderBrush="{x:Null}" Margin="862,-26,129,545">
+            <materialDesign:PackIcon Kind="Power" RenderTransformOrigin="2.875,0.188" Foreground="#FF37414A" Height="24" Width="37"/>
+        </Button>
+
+
+    </Grid>
+</UserControl>
