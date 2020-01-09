@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\dell\source\repos\Projet_WPF\Projet_WPF\obj\Debug\
+C:\Users\Dell\source\repos\Projet_WPF_v2\Projet_WPF\obj\Debug\
 Projet_WPF
 none
 false
 DEBUG;TRACE
-C:\Users\dell\source\repos\Projet_WPF\Projet_WPF\App.xaml
+C:\Users\Dell\source\repos\Projet_WPF_v2\Projet_WPF\App.xaml
 141080849187
 
-251186498589
-451689134805
+211110307200
+58-1179732404
 Acceuil.xaml;Authentification.xaml;Calendrier.xaml;Menu_Principale.xaml;ResourceDictionary1.xaml;statistic.xaml;TestFiliere.xaml;UserControlAcceuil.xaml;UserControlAgenda.xaml;UserControlEtudiant.xaml;UserControlEtudiant2.xaml;UserControlFiliere.xaml;UserControlStatistique.xaml;View\MessageBoxWindow.xaml;
 
 False

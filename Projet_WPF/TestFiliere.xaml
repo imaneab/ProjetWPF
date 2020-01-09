@@ -20,5 +20,6 @@
         <Button x:Name="ajouter_Copy"  Content="ajouter" RenderTransformOrigin="0.786,0.452" Click="ajouter_Click" Height="Auto" Background="#FFEEF3FC" BorderBrush="#FF6F7D83" Foreground="#FF37414A" BorderThickness="0,0,0,1"  Margin="134,313,548.4,50.2"/>
         <Label  Content="Id de filiere" Foreground="#000000" RenderTransformOrigin="0.512,0.933" Margin="175,177,476.4,195.2" FontSize="16" FontWeight="Bold" />
         <telerik:RadCarousel x:Name="MyCarousel" Margin="9.101,-34.959,0,0" Height="188.561" Width="737.786" BorderThickness="0" VerticalAlignment="Top" HorizontalAlignment="Left" Loaded="RadCarousel_Loaded" SelectionChanged="MyCarousel_SelectionChanged" Foreground="#000000" telerik:StyleManager.Theme="Windows7" OverridesDefaultStyle="True" UseLayoutRounding="False" RenderTransformOrigin="0.5,0.5" Panel.ZIndex="2" Cursor="Hand" Background="Transparent"/>
+       
     </Grid>
 </UserControl>

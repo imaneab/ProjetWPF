@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration>
+    <configSections>
+    </configSections>
+    <connectionStrings>
+        <add name="Projet_WPF.Properties.Settings.projet_wpfConnectionString"
+            connectionString="Data Source=DESKTOP-JGVDSU1\SQLEXPRESS;Initial Catalog=projet_wpf;Integrated Security=True"
+            providerName="System.Data.SqlClient" />
+        <add name="Projet_WPF.Properties.Settings.projet_wpfConnectionString1"
+            connectionString="Data Source=DESKTOP-6JRUIK1\ZINEBSQL;Initial Catalog=projet_wpf;Integrated Security=True"
+            providerName="System.Data.SqlClient" />
+    </connectionStrings>
+    <startup> 
+        <supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.6.1"/>
+    </startup>
+</configuration>

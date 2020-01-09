@@ -81,7 +81,7 @@ namespace Projet_WPF
 
                 datacontext.SubmitChanges();
 
-                MessageBoxWindow.Show(this, "filiere modifier !!", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBoxWindow.Show(this, "la filiere est bien modifier !!", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                 //MessageBox.Show("filiere modifier");
                 datacontext = new DataClasses1DataContext();
@@ -104,7 +104,7 @@ namespace Projet_WPF
                 var x = datacontext.Filiere.Single(ff => ff.Id_filiere == Convert.ToInt32(v.Id_filiere));
                 datacontext.Filiere.DeleteOnSubmit(x);
                 datacontext.SubmitChanges();
-                MessageBoxWindow.Show(this, "filiere Supprimé !!", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBoxWindow.Show(this, "la filiere est bien Supprimé !!", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
 
                 //MessageBox.Show("filiere Supprimé");
                 datacontext = new DataClasses1DataContext();
@@ -119,7 +119,7 @@ namespace Projet_WPF
 
             datacontext.Filiere.InsertOnSubmit(f);
             datacontext.SubmitChanges();
-            MessageBoxWindow.Show(this, "filiere Ajouté !!", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxWindow.Show(this, "la filiere est bien ajouté !!", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             //MessageBox.Show("filiere Ajouté");
             datacontext = new DataClasses1DataContext();

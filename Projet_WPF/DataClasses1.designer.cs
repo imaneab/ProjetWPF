@@ -30,16 +30,19 @@ namespace Projet_WPF
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnCreated();
-    partial void Insertetudiant(etudiant instance);
-    partial void Updateetudiant(etudiant instance);
-    partial void Deleteetudiant(etudiant instance);
     partial void InsertFiliere(Filiere instance);
     partial void UpdateFiliere(Filiere instance);
     partial void DeleteFiliere(Filiere instance);
+    partial void Insertetudiant(etudiant instance);
+    partial void Updateetudiant(etudiant instance);
+    partial void Deleteetudiant(etudiant instance);
+    partial void InsertAgenda(Agenda instance);
+    partial void UpdateAgenda(Agenda instance);
+    partial void DeleteAgenda(Agenda instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::Projet_WPF.Properties.Settings.Default.projet_wpfConnectionString1, mappingSource)
+				base(global::Projet_WPF.Properties.Settings.Default.projet_wpfConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -68,6 +71,14 @@ namespace Projet_WPF
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<Filiere> Filiere
+		{
+			get
+			{
+				return this.GetTable<Filiere>();
+			}
+		}
+		
 		public System.Data.Linq.Table<etudiant> etudiant
 		{
 			get
@@ -76,12 +87,126 @@ namespace Projet_WPF
 			}
 		}
 		
-		public System.Data.Linq.Table<Filiere> Filiere
+		public System.Data.Linq.Table<Agenda> Agenda
 		{
 			get
 			{
-				return this.GetTable<Filiere>();
+				return this.GetTable<Agenda>();
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Filiere")]
+	public partial class Filiere : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id_filiere;
+		
+		private string _Nom_filiere;
+		
+		private EntitySet<etudiant> _etudiant;
+		
+    #region Définitions de méthodes d'extensibilité
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnId_filiereChanging(int value);
+    partial void OnId_filiereChanged();
+    partial void OnNom_filiereChanging(string value);
+    partial void OnNom_filiereChanged();
+    #endregion
+		
+		public Filiere()
+		{
+			this._etudiant = new EntitySet<etudiant>(new Action<etudiant>(this.attach_etudiant), new Action<etudiant>(this.detach_etudiant));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_filiere", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id_filiere
+		{
+			get
+			{
+				return this._Id_filiere;
+			}
+			set
+			{
+				if ((this._Id_filiere != value))
+				{
+					this.OnId_filiereChanging(value);
+					this.SendPropertyChanging();
+					this._Id_filiere = value;
+					this.SendPropertyChanged("Id_filiere");
+					this.OnId_filiereChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom_filiere", DbType="VarChar(100)")]
+		public string Nom_filiere
+		{
+			get
+			{
+				return this._Nom_filiere;
+			}
+			set
+			{
+				if ((this._Nom_filiere != value))
+				{
+					this.OnNom_filiereChanging(value);
+					this.SendPropertyChanging();
+					this._Nom_filiere = value;
+					this.SendPropertyChanged("Nom_filiere");
+					this.OnNom_filiereChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Filiere_etudiant", Storage="_etudiant", ThisKey="Id_filiere", OtherKey="id_fil")]
+		public EntitySet<etudiant> etudiant
+		{
+			get
+			{
+				return this._etudiant;
+			}
+			set
+			{
+				this._etudiant.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_etudiant(etudiant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Filiere = this;
+		}
+		
+		private void detach_etudiant(etudiant entity)
+		{
+			this.SendPropertyChanging();
+			entity.Filiere = null;
 		}
 	}
 	
@@ -380,84 +505,188 @@ namespace Projet_WPF
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Filiere")]
-	public partial class Filiere : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Agenda")]
+	public partial class Agenda : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private int _Id_filiere;
+		private int _id;
 		
-		private string _Nom_filiere;
+		private string _note1;
 		
-		private EntitySet<etudiant> _etudiant;
+		private string _note2;
+		
+		private string _note3;
+		
+		private string _note4;
+		
+		private string _note5;
+		
+		private string _note6;
 		
     #region Définitions de méthodes d'extensibilité
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnId_filiereChanging(int value);
-    partial void OnId_filiereChanged();
-    partial void OnNom_filiereChanging(string value);
-    partial void OnNom_filiereChanged();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onnote1Changing(string value);
+    partial void Onnote1Changed();
+    partial void Onnote2Changing(string value);
+    partial void Onnote2Changed();
+    partial void Onnote3Changing(string value);
+    partial void Onnote3Changed();
+    partial void Onnote4Changing(string value);
+    partial void Onnote4Changed();
+    partial void Onnote5Changing(string value);
+    partial void Onnote5Changed();
+    partial void Onnote6Changing(string value);
+    partial void Onnote6Changed();
     #endregion
 		
-		public Filiere()
+		public Agenda()
 		{
-			this._etudiant = new EntitySet<etudiant>(new Action<etudiant>(this.attach_etudiant), new Action<etudiant>(this.detach_etudiant));
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Id_filiere", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int Id_filiere
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
 		{
 			get
 			{
-				return this._Id_filiere;
+				return this._id;
 			}
 			set
 			{
-				if ((this._Id_filiere != value))
+				if ((this._id != value))
 				{
-					this.OnId_filiereChanging(value);
+					this.OnidChanging(value);
 					this.SendPropertyChanging();
-					this._Id_filiere = value;
-					this.SendPropertyChanged("Id_filiere");
-					this.OnId_filiereChanged();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Nom_filiere", DbType="VarChar(100)")]
-		public string Nom_filiere
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note1", DbType="VarChar(500)")]
+		public string note1
 		{
 			get
 			{
-				return this._Nom_filiere;
+				return this._note1;
 			}
 			set
 			{
-				if ((this._Nom_filiere != value))
+				if ((this._note1 != value))
 				{
-					this.OnNom_filiereChanging(value);
+					this.Onnote1Changing(value);
 					this.SendPropertyChanging();
-					this._Nom_filiere = value;
-					this.SendPropertyChanged("Nom_filiere");
-					this.OnNom_filiereChanged();
+					this._note1 = value;
+					this.SendPropertyChanged("note1");
+					this.Onnote1Changed();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Filiere_etudiant", Storage="_etudiant", ThisKey="Id_filiere", OtherKey="id_fil")]
-		public EntitySet<etudiant> etudiant
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note2", DbType="VarChar(500)")]
+		public string note2
 		{
 			get
 			{
-				return this._etudiant;
+				return this._note2;
 			}
 			set
 			{
-				this._etudiant.Assign(value);
+				if ((this._note2 != value))
+				{
+					this.Onnote2Changing(value);
+					this.SendPropertyChanging();
+					this._note2 = value;
+					this.SendPropertyChanged("note2");
+					this.Onnote2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note3", DbType="VarChar(500)")]
+		public string note3
+		{
+			get
+			{
+				return this._note3;
+			}
+			set
+			{
+				if ((this._note3 != value))
+				{
+					this.Onnote3Changing(value);
+					this.SendPropertyChanging();
+					this._note3 = value;
+					this.SendPropertyChanged("note3");
+					this.Onnote3Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note4", DbType="VarChar(600)")]
+		public string note4
+		{
+			get
+			{
+				return this._note4;
+			}
+			set
+			{
+				if ((this._note4 != value))
+				{
+					this.Onnote4Changing(value);
+					this.SendPropertyChanging();
+					this._note4 = value;
+					this.SendPropertyChanged("note4");
+					this.Onnote4Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note5", DbType="VarChar(700)")]
+		public string note5
+		{
+			get
+			{
+				return this._note5;
+			}
+			set
+			{
+				if ((this._note5 != value))
+				{
+					this.Onnote5Changing(value);
+					this.SendPropertyChanging();
+					this._note5 = value;
+					this.SendPropertyChanged("note5");
+					this.Onnote5Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_note6", DbType="VarChar(700)")]
+		public string note6
+		{
+			get
+			{
+				return this._note6;
+			}
+			set
+			{
+				if ((this._note6 != value))
+				{
+					this.Onnote6Changing(value);
+					this.SendPropertyChanging();
+					this._note6 = value;
+					this.SendPropertyChanged("note6");
+					this.Onnote6Changed();
+				}
 			}
 		}
 		
@@ -479,18 +708,6 @@ namespace Projet_WPF
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_etudiant(etudiant entity)
-		{
-			this.SendPropertyChanging();
-			entity.Filiere = this;
-		}
-		
-		private void detach_etudiant(etudiant entity)
-		{
-			this.SendPropertyChanging();
-			entity.Filiere = null;
 		}
 	}
 }

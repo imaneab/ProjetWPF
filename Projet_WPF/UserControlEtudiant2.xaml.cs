@@ -24,14 +24,16 @@ namespace Projet_WPF
     public partial class UserControlEtudiant2 : UserControl
     {
         ObservableCollection<Filiere> Filieres;
+        private int etudiant_id;
         DataClasses1DataContext datacontext;
         etudiant etudiant;
         private Grid frame2;
         
 
 
-        public UserControlEtudiant2(Grid frame2)
+        public UserControlEtudiant2(Grid frame2, int etudiant_id)
         {
+            this.etudiant_id = etudiant_id;
             datacontext = new DataClasses1DataContext();
             InitializeComponent();
             this.frame2 = frame2;
@@ -41,10 +43,28 @@ namespace Projet_WPF
         }
         private void RadDataForm_Loaded(object sender, RoutedEventArgs e)
         {
+            var list = datacontext.etudiant.ToList();
+            int index = 0;
+            foreach(etudiant _et in list)
+            {
+             
+                if(_et.cne == etudiant_id && index > 0)
+                {
+                    etudiant __et = _et;
+                    etudiant et_b = list[0];
+
+                    list[0] = __et;
+                    list[index] = et_b;
+
+                    break;
+                }
+                index++;
+            }
             UserControlEtudiant us = new UserControlEtudiant();
+            
             etudiant et = us.RadGridView1.CurrentItem as etudiant;
-           raddataform1.ItemsSource = datacontext.etudiant.ToList();
-           raddataform1.CurrentItem = et;
+            raddataform1.ItemsSource = list;
+            raddataform1.CurrentItem = list[0];
 
 
 
@@ -74,7 +94,7 @@ namespace Projet_WPF
                      select et).SingleOrDefault();
             datacontext.etudiant.DeleteOnSubmit(x);
             datacontext.SubmitChanges();
-            MessageBoxWindow.Show(this, "etudiant supprimé", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxWindow.Show(this, "l'etudiant est bien supprimé", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
 
            // MessageBox.Show("etudiant supprimé");
 
@@ -84,7 +104,7 @@ namespace Projet_WPF
         {
 
             datacontext.SubmitChanges();
-            MessageBoxWindow.Show(this, "etudiant modifier", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxWindow.Show(this, "l'etudiant est bien modifier", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             //MessageBox.Show("etudiant modifier");
 
@@ -94,7 +114,7 @@ namespace Projet_WPF
         {
             datacontext.etudiant.InsertOnSubmit(f1);
             datacontext.SubmitChanges();
-            MessageBoxWindow.Show(this, "etudiant ajouté", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
+            MessageBoxWindow.Show(this, "l'etudiant est bien ajouté", " ", MessageBoxButton.OK, MessageBoxImage.Warning);
 
             //MessageBox.Show("etudiant ajouté");
         }

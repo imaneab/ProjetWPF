@@ -43,15 +43,16 @@ namespace Projet_WPF
         private void ListViewItem1_Selected(object sender, RoutedEventArgs e)
         {
             Menuframe.Children.Clear();
-            UserControlEtudiant Etudiant = new UserControlEtudiant();
-            Menuframe.Children.Add(Etudiant);
+            TestFiliere filiere = new TestFiliere();
+            Menuframe.Children.Add(filiere);
         }
 
         private void listViewItem2_Selected(object sender, RoutedEventArgs e)
         {
             Menuframe.Children.Clear();
-            TestFiliere filiere = new TestFiliere();
-            Menuframe.Children.Add(filiere);
+            UserControlEtudiant Etudiant = new UserControlEtudiant();
+            Menuframe.Children.Add(Etudiant);
+           
         }
 
         private void listViewItem3_Selected(object sender, RoutedEventArgs e)

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Projet_WPF.View"
         mc:Ignorable="d"
-        Title="MessageBoxWindow" Height="170" Width="400">
+        Title="Attention!" Height="170" Width="400" WindowStartupLocation="CenterScreen">
 
     <Window.Resources>
         <FontFamily x:Key="DefaultFont">Arial</FontFamily>

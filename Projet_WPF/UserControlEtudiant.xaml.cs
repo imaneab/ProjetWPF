@@ -82,11 +82,12 @@ namespace Projet_WPF
         {
             //UserControlEtudiant2 us = new UserControlEtudiant2(frame2);
             etudiant et = RadGridView1.CurrentItem as etudiant;
+            etudiant selected = ((FrameworkElement)sender).DataContext as etudiant;
             //us.raddataform1.ItemsSource = datacontext.etudiant.ToList();
             //us.raddataform1.CurrentItem = et;
             frame2.Visibility = Visibility.Visible;
             frame2.Children.Remove(this);
-            UserControlEtudiant2 Modification = new UserControlEtudiant2(frame2);
+            UserControlEtudiant2 Modification = new UserControlEtudiant2(frame2,selected.cne);
 
             frame2.Children.Add(Modification);
 

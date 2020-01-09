@@ -140,8 +140,8 @@
                         </TransformGroup>
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
-                        <materialDesign:PackIcon Kind="School" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Etudiant" Margin="10" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="BookmarkCheck" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Filiere" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem2" Height="60" RenderTransformOrigin="0.5,0.5" Selected="listViewItem2_Selected">
@@ -154,8 +154,8 @@
                         </TransformGroup>
                     </ListViewItem.RenderTransform>
                     <StackPanel Orientation="Horizontal" Margin="10 0">
-                        <materialDesign:PackIcon Kind="BookmarkCheck" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
-                        <TextBlock Text="Filiere" Margin="10" VerticalAlignment="Center"/>
+                        <materialDesign:PackIcon Kind="School" Width="30" Height="30" VerticalAlignment="Center" Margin="5"/>
+                        <TextBlock Text="Etudiant" Margin="10" VerticalAlignment="Center"/>
                     </StackPanel>
                 </ListViewItem>
                 <ListViewItem x:Name="listViewItem3" Height="60" RenderTransformOrigin="0.5,0.5" Selected="listViewItem3_Selected">
